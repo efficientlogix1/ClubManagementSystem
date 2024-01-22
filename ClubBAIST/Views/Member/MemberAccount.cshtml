@@ -1,0 +1,170 @@
+﻿
+@{
+    ViewBag.Title = "MemberAccount";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Member's Account</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Member's Account</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Member's Account</h3>
+    </div>
+    <form id="userForm">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="FName">First Name</label>
+                    <input type="number" class="form-control" id="UserId" value="0" hidden>
+                    <input type="text" class="form-control" id="FName" required placeholder="Enter First Name">
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="LName">Last Name</label>
+                        <input type="text" class="form-control" id="LName" required placeholder="Enter Last Name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="inputState" class="form-label">Membership</label>
+                    <select id="MembershipID" class="form-control select2" required>
+                        <option value="">Please Select</option>
+                        @*@foreach (var item in ViewBag.lstRoles)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }*@
+                    </select>
+                </div>
+
+                <div class="col-sm-6">
+
+
+                    <label for="Outstanding Amount">Outstanding Amount</label>
+                    <input type="text" class="form-control" id="OutstandingAmount" required placeholder="Enter Outstanding Amount">
+
+                </div>
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="FName">Occupation</label>
+                    <input type="text" class="form-control" id="Occupation" required placeholder="Enter Occupation">
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="LName">Address</label>
+                        <input type="text" class="form-control" id="Address" required placeholder="Enter Address">
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="FName">Company Address</label>
+                    <textarea name="CompanyAddress" class="form-control" id="Address" required placeholder="Enter Company Address here..."></textarea>
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="LName">Company Name</label>
+                        <input type="text" class="form-control" id="Address" required placeholder="Enter Company Name" >
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="FName">Postal Code</label>
+                    <input type="text" class="form-control" id="Occupation" required placeholder="Enter Postal Code" >
+                </div>
+
+                <div class="col-sm-6">
+                    <div>
+                        <label for="PNumber">Phone</label>
+                        <input type="text" class="form-control" id="Phone" required placeholder="Enter Phone Number" >
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <div>
+                        <label for="PNumber">Alternate Phone</label>
+                        <input type="text" class="form-control" id="AlternatePhone" required placeholder="Enter Alternate Phone Number" >
+                    </div>
+                </div>
+
+                <div class="col-sm-6">
+                    <div>
+                        <label for="PNumber">Date Of Birth</label>
+                        <input type="text" class="form-control" id="DOB" required placeholder="Enter Date Of Birth" >
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="UserName">User Name</label>
+                    <input type="text" class="form-control" id="UserName" required placeholder="Enter User Name">
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" class="form-control" id="Email" required placeholder="Enter Email" >
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row" id="PasswordDiv">
+                <div class="col-sm-6">
+
+
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" id="Password" required placeholder="Enter Password">
+
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="CPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="CPassword" required placeholder="Enter Confirm Password">
+                </div>
+
+            </div>
+
+
+
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" onclick="location.href='@Url.Action("ApplicationList","Application")'" class="btn btn-default ml-1">Back</button>
+
+        </div>
+    </form>
+</div>
+

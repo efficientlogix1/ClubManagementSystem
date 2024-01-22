@@ -1,0 +1,260 @@
+﻿@model DAL.MemberViewModel
+@{
+    ViewBag.Title = "ApproveApplication";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Approve Application</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Approve Application</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Approve Member's Application</h3>
+    </div>
+    @*<form id="approveApplicationForm">*@
+   
+<div class="card-body">
+    @using (Html.BeginForm("ApproveApplication", "Application", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "approveApplicationForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+
+        <div class="row">
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    @Html.TextBoxFor(m => m.ApplicationID, new { id = "ApplicationID", @name = "ApplicationID", @hidden = "hidden", @class = "form-control" })
+
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="FirstName">First Name</label>
+                @*<input type="number" class="form-control" id="UserId" value="0" hidden>*@
+
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name", @readonly = "readonly" })
+
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="LastName">Last Name</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <label for="Occupation">Email</label>
+                @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email", @readonly = "readonly" })
+            </div>
+
+            <div class="col-sm-6">
+                <label for="Occupation">Occupation</label>
+                @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control", @placeholder = "Occupation", @readonly = "readonly" })
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Address">Address</label>
+                    @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @placeholder = "Address", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="CompanyAddress">Company Address</label>
+                @Html.TextAreaFor(m => m.CompanyAddress, new { @class = "form-control", @placeholder = "CompanyAddress", @readonly = "readonly" })
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="CompanyName">Company Name</label>
+                    @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", @placeholder = "CompanyName", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="PostalCode">Postal Code</label>
+                @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control", @placeholder = "PostalCode", @readonly = "readonly" })
+
+
+            </div>
+            <div class="col-sm-6">
+                <div>
+                    <label for="Phone">Phone</label>
+                    @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Phone", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <div>
+                    <label for="AlternatePhone">Alternate Phone</label>
+                    @Html.TextBoxFor(m => m.AlternatePhone, new { @class = "form-control", @placeholder = "AlternatePhone", @readonly = "readonly" })
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <div>
+                    <label for="DateOfBirth">Date Of Birth</label>
+                    @Html.TextBoxFor(m => m.StrDateOfBirth, new { @class = "form-control", @placeholder = "Date Of Birth", @readonly = "readonly" })
+                </div>
+            </div>
+        </div>
+
+
+        <div class="row">
+
+
+
+
+
+        </div>
+
+
+
+
+        <div class="row">
+        
+            <div class="col-sm-6">
+                <div>
+                    <label for="CompanyPhone">Company Phone</label>
+                    @Html.TextBoxFor(m => m.CompanyPhone, new { @class = "form-control", @placeholder = "Company Phone", @readonly = "readonly" })
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div>
+                    <label for="Username">User Name</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "User Name" })
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+
+            <div class="col-sm-6">
+                <div>
+                    <label for="Password">Password</label>
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                </div>
+            </div>
+
+            <div class="col-sm-6">
+                <label for="inputState" class="form-label">Membership Type</label>
+                <select id="Membership" class="form-control select2" required>
+                    <option value="">Please Select</option>
+                    @*@foreach (var item in ViewBag.lstRoles)
+                {
+                    <option value="@item.ID">@item.Name</option>
+                }*@
+                </select>
+            </div>
+
+        </div>
+
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" onclick="location.href='@Url.Action("ApplicationList", "Application")'" class="btn btn-default ml-1">Back</button>
+
+        </div>
+        @*</form>*@
+    }
+</div>
+@section scripts{
+    <script>
+        $('#approveApplicationForm').submit(function (e) {
+            e.preventDefault();
+            if ($(this).valid()) {
+
+                var model = {
+                    MemberID: $('#MemberID').val(),
+                    FirstName: $('#FirstName').val(),
+                    LastName: $('#LastName').val(),
+                    Occupation: $('#Occupation').val(),
+                    Address: $('#Address').val(),
+                    CompanyAddress: $('#CompanyAddress').val(),
+                    CompanyName: $('#CompanyName').val(),
+                    PostalCode: $('#PostalCode').val(),
+                    Email: $('#Email').val(),
+                    Phone: $('#Phone').val(),
+                    Membership: $('#Membership').val(),
+                    CompanyPhone: $('#CompanyPhone').val(),
+                    AlternatePhone: $('#AlternatePhone').val(),
+                    StrDateOfBirth: $('#StrDateOfBirth').val(),
+                    Username: $('#Username').val(),
+                    Password: $('#Password').val(),
+                    CompanyPhone: $('#CompanyPhone').val()
+
+                };
+                Post("/Member/Save", { memberViewModel: model }).then(function (d) {
+                    if (d.Success) {
+                        RedirectDelay('/Application/ApplicationList');
+                    }
+                    ShowMessage(d);
+                });
+            }
+        });
+        
+        BindDropdown();
+        function BindDropdown() {
+            Get('/Application/BindDropdown', true).then(function (d) {
+                if (d.msg.Success) {
+                    var html = '';
+                    for (var i = 0; i < d.Data.length; i++) {
+                        html += '<option value="' + d.Data[i]+'">' + d.Data[i]+'</option>';
+                    }
+                    $('#Membership').append(html);
+                    Prebind();
+                }
+            });
+        }
+        
+        function Prebind() {
+            
+            var param = FetchParams();  if (param.ApplicationID != undefined) {
+                Get('/Application/FetchApplicationByID?ApplicationID=' + param.ApplicationID, false).then(function (d) {
+                    if (d.msg.Success) {
+                        $('#ApplicationID').val(d.Data.Id);
+
+                        $('#FirstName').val(d.Data.FirstName).prop('readonly', true);
+                        $('#LastName').val(d.Data.LastName).prop('readonly', true);
+                        $('#Occupation').val(d.Data.Occupation).prop('readonly', true);
+                        $('#Address').val(d.Data.Address).prop('readonly', true);
+                        $('#CompanyAddress').val(d.Data.CompanyAddress).prop('readonly', true);
+                        $('#CompanyName').val(d.Data.CompanyName).prop('readonly', true);
+                        $('#PostalCode').val(d.Data.PostalCode).prop('readonly', true);
+                        $('#Phone').val(d.Data.Phone).prop('readonly', true);
+                        $('#CompanyPhone').val(d.Data.CompanyPhone).prop('readonly', true);
+                        $('#AlternatePhone').val(d.Data.AlternatePhone).prop('readonly', true);
+                        $('#Membership').val(d.Data.Membership).prop('readonly', true);
+                        $('#CompanyPhone').val(d.Data.CompanyPhone).prop('readonly', true);
+                        $('#StrDateOfBirth').val(d.Data.StrDateOfBirth).prop('readonly', true);
+                        $('#Email').val(d.Data.Email).prop('readonly', true);
+                    }
+
+                });
+            }
+        }
+
+
+    </script>
+
+}
+

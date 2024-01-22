@@ -1,0 +1,137 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ClubBAIST| Landing Page</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    @*<link rel="stylesheet" href="../../fonts/Gfont4.css" />*@
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- Ionicons -->
+    @*<link rel="stylesheet" href="ionicframework2.css" />*@
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- iCheck -->
+    <link rel="stylesheet" href="~/Assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- JQVMap -->
+    <link rel="stylesheet" href="~/Assets/plugins/jqvmap/jqvmap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Assets/dist/css/adminlte.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- Daterange picker -->
+    <link rel="stylesheet" href="~/Assets/plugins/daterangepicker/daterangepicker.css">
+    <!-- summernote -->
+    <link rel="stylesheet" href="~/Assets/plugins/summernote/summernote-bs4.min.css">
+    <link rel="stylesheet" href="~/Assets/plugins/toastr/toastr.min.css">
+    <!-- Data table css -->
+    <link href="~/Assets/plugins/datatable/dataTables.bootstrap4.min.css" rel="stylesheet" />
+    <link href="~/Assets/plugins/datatable/jquery.dataTables.min.css" rel="stylesheet" />
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/Assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <link href="~/Assets/dist/css/Custom.css" rel="stylesheet" />
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+    <div class="wrapper">
+
+
+
+        <!-- Main Sidebar Container -->
+
+        <div class="content-wrapper" style="min-height: 268px; background-color: #fff; margin-right: 250px;">
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- Content Wrapper. Contains page content -->
+                    <!-- Main content -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h3 style="text-align:center">Club BAIST Application</h3>
+                        </div>
+                        <div class="card-body" style="text-align:center">
+                            <a href="@Url.Action("ApplicationView","Application")" class="nav-link ">
+                                <p>
+                                    Apply
+                                </p>
+                            </a>
+                            <br />
+                            <a href="@Url.Action("Login","Account")" class="nav-link ">
+                                <p>
+                                    Login
+                                </p>
+                            </a>
+                            <br />
+                        </div>
+
+
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- /.content-wrapper -->
+
+
+    </div>
+    <footer class="main-footer">
+        <strong>Copyright &copy; @DateTime.Now.Year <a href="#">ClubBAIST.io</a>.</strong>
+        All rights reserved.
+    </footer>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+    <!-- jQuery UI 1.11.4 -->
+    <script src="~/Assets/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+    <script>
+        $.widget.bridge('uibutton', $.ui.button)
+    </script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- ChartJS -->
+    <script src="~/Assets/plugins/chart.js/Chart.min.js"></script>
+    <!-- Sparkline -->
+    <script src="~/Assets/plugins/sparklines/sparkline.js"></script>
+    <!-- JQVMap -->
+    <script src="~/Assets/plugins/jqvmap/jquery.vmap.min.js"></script>
+    <script src="~/Assets/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+    <!-- jQuery Knob Chart -->
+    <script src="~/Assets/plugins/jquery-knob/jquery.knob.min.js"></script>
+    <!-- daterangepicker -->
+    <script src="~/Assets/plugins/moment/moment.min.js"></script>
+    <script src="~/Assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Summernote -->
+    <script src="~/Assets/plugins/summernote/summernote-bs4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script src="~/Assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Assets/dist/js/adminlte.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Assets/dist/js/demo.js"></script>
+    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @*<script src="~/Assets/dist/js/pages/dashboard.js"></script>*@
+    <!-- Select2 -->
+    <script src="~/Assets/plugins/select2/js/select2.full.min.js"></script>
+    <!-- Data tables -->
+    <script src="~/Assets/plugins/datatable/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/datatable.js"></script>
+    <script src="~/Assets/plugins/toastr/toastr.min.js"></script>
+    <script src="~/Scripts/Generic.js"></script>
+    <script src="~/Scripts/Method.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+
+</body>
+</html>
+
+

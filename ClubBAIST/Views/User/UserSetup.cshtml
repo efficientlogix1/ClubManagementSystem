@@ -1,0 +1,268 @@
+﻿
+@{
+    ViewBag.Title = "UserSetup";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">User Setup</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">User Setup</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Create New User</h3>
+    </div>
+    <form id="userForm">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="FName">First Name</label>
+                    <input type="number" class="form-control" id="UserId" value="0" hidden>
+                    <input type="text" class="form-control" id="FName" required placeholder="Enter First Name">
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="LName">Last Name</label>
+                        <input type="text" class="form-control" id="LName" required placeholder="Enter Last Name">
+                    </div>
+                </div>
+
+
+
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="UserName">User Name</label>
+                    <input type="text" class="form-control" id="UserName" required placeholder="Enter User Name">
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        <input type="email" class="form-control" id="Email" required placeholder="Enter Email">
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="row" id="PasswordDiv">
+                <div class="col-sm-6">
+
+
+                    <label for="Password">Password</label>
+                    <input type="password" class="form-control" id="Password" required placeholder="Enter Password">
+
+                </div>
+
+                <div class="col-sm-6">
+                    <label for="CPassword">Confirm Password</label>
+                    <input type="password" class="form-control" id="CPassword" required placeholder="Enter Confirm Password">
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="PNumber">Phone Number</label>
+                    <input type="text" class="form-control" id="PNumber" required placeholder="Enter Phone Number">
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="Address">Address</label>
+                        @*<input type="text" class="form-control" id="Address" required placeholder="Enter Address">*@
+                        <textarea name="Address" class="form-control" id="Address" required placeholder="Enter Address here..."></textarea>
+                    </div>
+                </div>
+
+
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <label for="inputState" class="form-label">Company</label>
+                    <select id="CompanyID" class="form-control select2" required>
+                        <option value="">Please Select</option>
+                        @foreach (var item in ViewBag.lstCompanies)
+                        {
+                            <option value="@item.ID">@item.Name</option>
+                        }
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="Status">Status</label>
+                        <div class="form-group clearfix">
+                            <div class="icheck-primary d-inline">
+                                <input type="checkbox" id="IsActive" />
+                                <label for="IsActive">
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                @*<div class="col-sm-6">
+                        <div class="form-group">
+                            <label for="exampleInputFile">Attachments</label>
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="exampleInputFile" value="exampleInputFile" name="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                                <div class="input-group-append">
+                                    <span class="input-group-text">Upload</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>*@
+
+            </div>
+            <div class="form-group" id="fileUploadDiv">
+                <!--<div class="row file-item">
+                <div class="col-sm-6">
+                    <label class="form-label" for="exampleInputPassword1">Attachments</label>
+                    <input type="file" data-id="0" data-type="" class="form-control fileUploader" onchange="readurl(this)" />
+                </div>
+                <div class="col-sm-3 addBtn">
+                    <br />-->
+                @*<button class="btn btn-primary" type="button" onclick="AddDiv()">Add More</button>*@
+                <!--</div>
+                </div>-->
+
+                <div class="col-sm-6">
+                    <p><label for="file" style="cursor: pointer;" class="form-label">Attachments</label></p>
+                    <p><input type="file" id="fileUpload" accept="image/*" name="image" onchange="readurl(this)" data-type="" class="form-control fileUploader"></p>
+
+                    <p><img id="output" src="~/Assets/images/UserProfile/DefaultImage.jpg" height="200" width="200" /></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" onclick="location.href='@Url.Action("UserList","User")'" class="btn btn-default ml-1">Back</button>
+
+        </div>
+    </form>
+</div>
+@section scripts{
+    <script>
+
+        $('#userForm').submit(function (e) {
+           
+            e.preventDefault();
+            if ($('#Password').val() == ($('#CPassword').val())) {
+                if ($(this).valid()) {
+                    var files = [];
+                    var formdata = new FormData();
+                    var files = $('#fileUpload')[0].files[0];
+                    if (files != undefined) {
+                        formdata.append(files.name, files);
+                    }
+                    formdata.append('model.Id', $('#UserId').val());
+                    formdata.append('model.CompanyID', $('#CompanyID option:selected').val());
+                    formdata.append('model.FirstName', $('#FName').val());
+                    formdata.append('model.LastName', $('#LName').val());
+                    formdata.append('model.PhoneNumber', $('#PNumber').val());
+                    formdata.append('model.Email', $('#Email').val());
+                    formdata.append('model.UserName', $('#UserName').val());
+                    formdata.append('model.Password', $('#Password').val());
+                    formdata.append('model.ConfirmPassword', $('#Password').val());
+                    formdata.append('model.Address', $('#Address').val());
+                    formdata.append('model.IsActive', $('#IsActive').is(':checked'));
+                    BlockUI();
+                    $.ajax({
+                        data: formdata,
+                        method: "Post",
+                        url: "/User/Save",
+                        processData: false,
+                        contentType: false,
+                        success: function (d) {
+                            UnBlockUI();
+                            if (d.Success) {
+                                RedirectDelay('/User/UserList');
+                            }
+                            ShowMessage(d);
+                        },
+                        error: function (XMLHttpRequest, textStatus, errorThrown) {
+                            UnBlockUI();
+                            ErrorMessage("Something went wrong, please try again");
+                        }
+                    });
+
+                }
+            }
+            else {
+                alert("Password And Confirm Password Do not Match");
+            }
+        });
+
+        Prebind();
+        function Prebind() {
+            var param = FetchParams();
+            if (param.userID != undefined) {
+                Get('/User/FetchUserByID?userID=' + param.userID, false).then(function (d) {
+                    if (d.msg.Success) {
+                        $('#UserId').val(d.Data.Id);
+                        $('#CompanyID').val(d.Data.CompanyID).change().prop('readonly', true);
+                        $('#UserName').val(d.Data.UserName).prop('readonly', true);
+                        $('#Email').val(d.Data.Email).prop('readonly', true);
+                        $('#FName').val(d.Data.FirstName);
+                        $('#LName').val(d.Data.LastName);
+                        $('#Password').val(d.Data.PasswordHash);
+                        $('#CPassword').val(d.Data.PasswordHash);
+                        $('#PasswordDiv').hide();
+                        $('#PNumber').val(d.Data.PhoneNumber);
+                        $('#Address').val(d.Data.Address);
+                        $('#output').attr('src', d.Data.Photo);
+                        if (d.Data.IsActive) {
+                            $('#IsActive').prop('checked', true);
+                        }
+                        else {
+                            $('#IsActive').prop('checked', false);
+                        }
+
+                    }
+                });
+            }
+        }
+        function readurl(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                var mimeType = input.files[0]['type'];
+                if (mimeType.split('/')[0] == 'image') {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        $('#output').attr('src', e.target.result);
+                    }
+                    reader.readAsDataURL(input.files[0]);
+                }
+                else {
+                    $(input).val('');
+                    ErrorMessage('Please select image file only');
+                }
+            }
+        }
+
+    </script>
+
+}

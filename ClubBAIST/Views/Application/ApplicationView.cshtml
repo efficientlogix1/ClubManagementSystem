@@ -1,0 +1,388 @@
+﻿@model DAL.Application
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ClubBAIST  | Application Form</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="~/Assets/plugins/fontawesome-free/css/all.min.css">
+    <!-- daterange picker -->
+    <link rel="stylesheet" href="~/Assets/plugins/daterangepicker/daterangepicker.css">
+    <!-- iCheck for checkboxes and radio inputs -->
+    <link rel="stylesheet" href="~/Assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Bootstrap Color Picker -->
+    <link rel="stylesheet" href="~/Assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
+    <!-- Tempusdominus Bootstrap 4 -->
+    <link rel="stylesheet" href="~/Assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/Assets/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet" href="~/Assets/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- Bootstrap4 Duallistbox -->
+    <link rel="stylesheet" href="~/Assets/plugins/bootstrap4-duallistbox/bootstrap-duallistbox.min.css">
+    <!-- BS Stepper -->
+    <link rel="stylesheet" href="~/Assets/plugins/bs-stepper/css/bs-stepper.min.css">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="~/Assets/plugins/dropzone/min/dropzone.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/Assets/dist/css/adminlte.min.css">
+</head>
+<body class="hold-transition sidebar-mini">
+    <div @*class="wrapper"*@>
+
+
+        <!-- Main Sidebar Container -->
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper" style=" margin-right: 250px;">
+            <!-- Content Header (Page header) -->
+            <!--<section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        
+                        <div class="col-sm-6">
+                            <h1>Application Form</h1>
+                        </div>
+
+                    </div>
+                </div>--><!-- /.container-fluid -->
+            <!--</section>-->
+
+            <!-- Main content -->
+            <section class="content">
+                <div class="container-fluid">
+                    <!-- SELECT2 EXAMPLE -->
+                    <!-- /.card -->
+                    <!-- SELECT2 EXAMPLE -->
+                    <!-- /.card -->
+                    <!-- /.card -->
+
+                    <div class="row">
+                        <div class="col-sm-2">
+
+                        </div>
+                        <!-- /.col (left) -->
+                        <div class="col-md-6">
+                            <div class="card card-primary">
+                                <div class="card-header">
+                                    <h3 class="card-title">APPLICATION FORM</h3>
+                                </div>
+                                <div class="card-body">
+                                    @using (Html.BeginForm("ApplicationView", "Application", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "ApplicationForm" }))
+                                    {
+                                        @Html.AntiForgeryToken()
+                                        @Html.ValidationSummary("", new { @class = "text-danger" })
+                                        <!-- Date -->
+
+                                        <div class="form-group">
+                                            <div class="input-group mb-3">
+                                                @Html.TextBoxFor(m => m.ApplicationID, new { id = "ApplicationID", @name = "ApplicationID", @hidden = "hidden", @class = "form-control" })
+
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group mb-3">
+
+                                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+
+                                                    <span class="fa fa-user"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-user"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.Occupation, new { @class = "form-control", @placeholder = "Occupation" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-tasks"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", @placeholder = "Address" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+
+                                                    <span class="fas fa-address-card"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextAreaFor(m => m.CompanyAddress, new { @class = "form-control", @placeholder = "Company Address" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-address-card"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.CompanyName, new { @class = "form-control", @placeholder = "Company Name" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-building"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.PostalCode, new { @class = "form-control", @placeholder = "Postal Code" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-map-pin"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.Phone, new { @class = "form-control", @placeholder = "Phone", @oninput = "this.value = this.value.replace(/[^\\d]/g, '');" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fa fa-phone"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.AlternatePhone, new { @class = "form-control", @placeholder = "Alternate Phone", @oninput = "this.value = this.value.replace(/[^\\d]/g, '');" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-mobile-alt"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.CompanyPhone, new { @class = "form-control", @placeholder = "Company Phone", @oninput = "this.value = this.value.replace(/[^\\d]/g, '');" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-mobile-alt"></span>
+
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                                            <div class="input-group-append">
+                                                <div class="input-group-text">
+                                                    <span class="fas fa-envelope"></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="input-group mb-3">
+                                            
+                                            @Html.TextBoxFor(m => m.StrDateOfBirth, new { @class = "form-control datetimepicker-input", @placeholder = "Date Of Birth", @id = "StrDateOfBirth",@readonly="readonly" })
+
+                                            <div class="input-group-append" data-target="#StrDateOfBirth" data-toggle="datetimepicker">
+                                                <div class="input-group-text"><i class="fa fa-calendar"></i></div>
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="row">
+
+                                            <!-- /.col -->
+                                            <div class="col-4">
+                                                <button type="submit" class="btn btn-primary btn-block">Apply</button>
+                                            </div>
+                                            <!-- /.col -->
+                                        </div>
+                                    }
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                    </div>
+                    <!-- /.row -->
+                    <!--<div class="row">
+                        <div class="co-header">
+                                    <h3 class="card-title">bs-stepper</h3>
+                                </div>
+                                <div class="card-body p-0">
+                                    <div class="bs-stepper">
+                                        <div class="bs-stepper-header" role="tablist">-->
+                    <!-- your steps here -->
+                    <!--<div class="step" data-target="#logins-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="logins-part" id="logins-part-trigger">
+                                <span class="bs-stepper-circle">1</span>
+                                <span class="bs-stepper-label">Logins</span>
+                            </button>
+                        </div>
+                        <div class="line"></div>
+                        <div class="step" data-target="#information-part">
+                            <button type="button" class="step-trigger" role="tab" aria-controls="information-part" id="information-part-trigger">
+                                <span class="bs-stepper-circle">2</span>
+                                <span class="bs-stepper-label">Various information</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="bs-stepper-content">-->
+                    <!-- your steps content here -->
+                    <!--<div id="logins-part" class="content" role="tabpanel" aria-labelledby="logins-part-trigger">
+                                    <div class="form-group">
+                                        <label for="exampleInputEmail1">Email address</label>
+                                        <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Password</label>
+                                        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                                    </div>
+                                    <button class="btn btn-primary" onclick="stepper.next()">Next</button>
+                                </div>
+                                <div id="information-part" class="content" role="tabpanel" aria-labelledby="information-part-trigger">
+                                    <div class="form-group">
+                                        <label for="exampleInputFile">File input</label>
+                                        <div class="input-group">
+                                            <div class="custom-file">
+                                                <input type="file" class="custom-file-input" id="exampleInputFile">
+                                                <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="stepper.previous()">Previous</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>-->
+                    <!-- /.card-body -->
+                    <!--</div>-->
+                    <!-- /.card -->
+                    <!--</div>
+                    </div>-->
+                    <!-- /.row -->
+                    <!-- /.row -->
+                </div>
+                <!-- /.container-fluid -->
+            </section>
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <footer class="main-footer">
+            <strong>Copyright &copy; @DateTime.Now.Year <a href="#">ClubBAIST.io</a>.</strong>
+            All rights reserved.
+        </footer>
+
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <script src="~/Assets/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Assets/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/Assets/plugins/select2/js/select2.full.min.js"></script>
+    <!-- Bootstrap4 Duallistbox -->
+    <script src="~/Assets/plugins/bootstrap4-duallistbox/jquery.bootstrap-duallistbox.min.js"></script>
+    <!-- InputMask -->
+    <script src="~/Assets/plugins/moment/moment.min.js"></script>
+    <script src="~/Assets/plugins/inputmask/jquery.inputmask.min.js"></script>
+    <!-- date-range-picker -->
+    <script src="~/Assets/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- bootstrap color picker -->
+    <script src="~/Assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
+    <!-- Tempusdominus Bootstrap 4 -->
+    <script src="~/Assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+    <!-- Bootstrap Switch -->
+    <script src="~/Assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
+    <!-- BS-Stepper -->
+    <script src="~/Assets/plugins/bs-stepper/js/bs-stepper.min.js"></script>
+    <!-- dropzonejs -->
+    <script src="~/Assets/plugins/dropzone/min/dropzone.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Assets/dist/js/adminlte.min.js"></script>
+    <!-- Page specific script -->
+    <!-- Data tables -->
+    <script src="~/Assets/plugins/datatable/jquery.dataTables.min.js"></script>
+    <script src="~/Assets/plugins/datatable/dataTables.bootstrap4.min.js"></script>
+    <script src="~/Scripts/datatable.js"></script>
+    <script src="~/Assets/plugins/toastr/toastr.min.js"></script>
+    <script src="~/Scripts/Generic.js"></script>
+    <script src="~/Scripts/Method.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Assets/plugins/fullcalendar/main.js"></script>
+    <script>
+        $(function () {
+            
+            //Date picker
+            $('#StrDateOfBirth').datetimepicker({
+                format: 'L'
+            });
+
+
+        })
+
+        $('#ApplicationForm').submit(function (e) {
+            e.preventDefault();
+            if ($(this).valid()) {
+                
+                var model = {
+                    ID: $('#ApplicationID').val(),
+                    FirstName: $('#FirstName').val(),
+                    LastName: $('#LastName').val(),
+                    Address: $('#Address').val(),
+                    PostalCode: $('#PostalCode').val(),
+                    Phone: $('#Phone').val(),
+                    AlternatePhone: $('#AlternatePhone').val(),
+                    Email: $('#Email').val(),
+                    StrDateOfBirth: $('#StrDateOfBirth').val(),
+                    Occupation: $('#Occupation').val(),
+                    CompanyName: $('#CompanyName').val(),
+                    CompanyAddress: $('#CompanyAddress').val(),
+                    CompanyPhone: $('#CompanyPhone').val()
+
+                };
+                Post("/Application/Save", { application: model }).then(function (d) {
+                    if (d.Success) {
+                        RedirectDelay('/');
+                    }
+                    ShowMessage(d);
+                });
+            }
+        });
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,171 @@
+﻿@model DAL.StaffViewModel
+@{
+    ViewBag.Title = "StaffSetup";
+}
+
+<div class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1 class="m-0">Staff Setup</h1>
+            </div><!-- /.col -->
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Home</a></li>
+                    <li class="breadcrumb-item active">Staff Setup</li>
+                </ol>
+            </div><!-- /.col -->
+        </div><!-- /.row -->
+    </div><!-- /.container-fluid -->
+</div>
+
+
+
+<div class="card card-primary">
+    <div class="card-header">
+        <h3 class="card-title">Create New Staff Member</h3>
+    </div>
+    @*<form id="StaffForm">*@
+<div class="card-body">
+    @using (Html.BeginForm("ApproveApplication", "Application", FormMethod.Post, new { @class = "form-horizontal", role = "form", id = "StaffForm" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary("", new { @class = "text-danger" })
+        <div class="form-group">
+            <div class="input-group mb-3">
+                @Html.TextBoxFor(m => m.EmployeeID, new { id = "ApplicationID", @name = "EmployeeID", @hidden = "hidden", @class = "form-control" })
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="FirstName">First Name</label>
+
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control", @placeholder = "First Name" })
+            </div>
+
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="LastName">Last Name</label>
+                    @Html.TextBoxFor(m => m.LastName, new { @class = "form-control", @placeholder = "Last Name" })
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+        <div class="row">
+            <div class="col-sm-6">
+                <label for="inputState" class="form-label">Role</label>
+
+                <select id="Role" class="form-control select2">
+                    <option value="">Please Select</option>
+                    @*@foreach (var item in ViewBag.lstCompanies)
+                        {
+                            <option value="@item.ID">@item.Name</option>
+                        }*@
+                </select>
+            </div>
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Username">User Name</label>
+                    @Html.TextBoxFor(m => m.Username, new { @class = "form-control", @placeholder = "User Name" })
+                </div>
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-sm-6">
+                <div class="form-group">
+                    <label for="Password">Password</label>
+                    @Html.TextBoxFor(m => m.Password, new { @class = "form-control", @placeholder = "Password" })
+                </div>
+            </div>
+
+            
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label for="Email">Email</label>
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email" })
+                    </div>
+                </div>
+            
+        </div>
+
+
+
+        <div class="card-footer">
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="button" onclick="" class="btn btn-default ml-1">Back</button>
+
+        </div>
+        @*</form>*@
+    }
+</div>
+        @section scripts{
+            <script>
+                $('#StaffForm').submit(function (e) {
+                    e.preventDefault();
+                    if ($(this).valid()) {
+                       
+                        var model = {
+                            EmployeeID: $('#EmployeeID').val(),
+                            FirstName: $('#FirstName').val(),
+                            LastName: $('#LastName').val(),
+                            Role: $('#Role').val(),
+                            Username: $('#Username').val(),
+                            Password: $('#Password').val(),
+                            Email: $('#Email').val()
+
+
+                        };
+                        Post("/Staff/Save", { staffViewModel: model }).then(function (d) {
+                            if (d.Success) {
+                                RedirectDelay('/Staff/StaffList');
+                            }
+                            ShowMessage(d);
+                        });
+                    }
+                });
+                BindDropdown();
+                function BindDropdown() {
+                    
+                    Get('/Staff/BindDropdown', true).then(function (d) {
+                        if (d.msg.Success) {
+                            var html = '';
+                            for (var i = 0; i < d.Data.length; i++) {
+                                html += '<option value="' + d.Data[i] + '">' + d.Data[i] + '</option>';
+                            }
+                            $('#Role').append(html);
+                            Prebind();
+                        }
+                    });
+                }
+
+                function Prebind() {
+                   
+                    var param = FetchParams(); if (param.EmployeeID != undefined) {
+                        Get('/Staff/FetchStaffByID?EmployeeID=' + param.EmployeeID, false).then(function (d) {
+                            if (d.msg.Success) {
+                                $('#EmployeeID').val(d.Data.Id);
+                                $('#FirstName').val(d.Data.FirstName);
+                                $('#LastName').val(d.Data.LastName);
+                                $('#Role').val(d.Data.Role);
+                                $('#Username').val(d.Data.Username).prop('readonly', true);
+                                $('#Password').val(d.Data.Password);
+                                $('#Email').val(d.Data.Email);
+                                
+                            }
+
+                        });
+                    }
+                }
+
+            </script>
+        }
